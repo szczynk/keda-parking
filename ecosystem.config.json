@@ -1,0 +1,29 @@
+{
+  "apps": [
+    {
+      "name": "node-app",
+      "script": "server/server.js",
+      "exec_mode" : "cluster",
+      "instances": 0,
+      "autorestart": true,
+      "watch": false,
+      "time": true,
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    {
+      "name": "nuxt-app",
+      "script": "./client/node_modules/nuxt/bin/nuxt.js",
+      "args": "start",
+      "exec_mode" : "cluster",
+      "instances": 0,
+      "autorestart": true,
+      "watch": false,
+      "time": true,
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}

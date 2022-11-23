@@ -1,0 +1,10 @@
+{
+  "name": "keda-parking",
+  "version": "1.0.0",
+  "description": "keda-parking",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "szczynk",
+  "license": "Apache-2.0"
+}
