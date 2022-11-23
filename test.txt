@@ -1,0 +1,108 @@
+szczynk@szczynk-K45DR:~/JSDev/keda-parking/server$ npm run test
+
+> keda-parking-server@1.0.0 pretest
+> cross-env NODE_ENV=test npm run db:reset && cross-env NODE_ENV=test npx sequelize-cli db:seed:all
+
+
+> keda-parking-server@1.0.0 db:reset
+> npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate
+
+
+Sequelize CLI [Node: 16.18.1, CLI: 6.5.2, ORM: 6.25.7]
+
+Loaded configuration file "config/config.json".
+Using environment "test".
+Database keda_test dropped.
+
+Sequelize CLI [Node: 16.18.1, CLI: 6.5.2, ORM: 6.25.7]
+
+Loaded configuration file "config/config.json".
+Using environment "test".
+Database keda_test created.
+
+Sequelize CLI [Node: 16.18.1, CLI: 6.5.2, ORM: 6.25.7]
+
+Loaded configuration file "config/config.json".
+Using environment "test".
+== 20221121064248-create-park: migrating =======
+== 20221121064248-create-park: migrated (0.042s)
+
+
+Sequelize CLI [Node: 16.18.1, CLI: 6.5.2, ORM: 6.25.7]
+
+Loaded configuration file "config/config.json".
+Using environment "test".
+== 20221121064635-parks: migrating =======
+== 20221121064635-parks: migrated (0.018s)
+
+
+> keda-parking-server@1.0.0 test
+> cross-env NODE_ENV=test jest -i --colors --verbose --detectOpenHandles
+
+ PASS  tests/park.test.js
+  User routes
+    GET /api/parks
+      ✓ should return 200 and apply the default query options (1030 ms)
+      ✓ should correctly apply filter on plat field (69 ms)
+      ✓ should correctly apply filter on tipe field (58 ms)
+      ✓ should correctly sort the returned array if descending sort param is specified (63 ms)
+      ✓ should correctly sort the returned array if ascending sort param is specified (48 ms)
+      ✓ should limit returned array if limit param is specified (45 ms)
+      ✓ should return the correct page if page and limit params are specified (55 ms)
+    POST /api/parks
+      ✓ should return 201 and successfully create new mobil park if data is ok (96 ms)
+      ✓ should return 201 and successfully create new motor park if data is ok (57 ms)
+      ✓ should return 400 error if one field is null (42 ms)
+    GET /api/parks/:parkId
+      ✓ should return 200 and the park object if data is ok (39 ms)
+      ✓ should return 404 error if park is not found (37 ms)
+      ✓ should return 400 error if parkId is not a valid (33 ms)
+    DELETE /api/parks/:parkId
+      ✓ should return 204 if data is ok (48 ms)
+      ✓ should return 404 error if park is not found (33 ms)
+      ✓ should return 400 error if parkId is not a valid (34 ms)
+    PATCH /api/parks/:parkId
+      ✓ should return 200 if data is ok (63 ms)
+      ✓ should return 404 error if park is not found (41 ms)
+      ✓ should return 400 error if parkId is not a valid (40 ms)
+
+ PASS  tests/base.test.js
+  Initial Test
+    ✓ should test that 1 + 1 === 2 (7 ms)
+
+---------------------|---------|----------|---------|---------|-------------------
+File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------------|---------|----------|---------|---------|-------------------
+All files            |   93.71 |    75.38 |   73.68 |   93.71 |                   
+ config              |    91.8 |       20 |      20 |    91.8 |                   
+  index.js           |     100 |        0 |     100 |     100 | 1                 
+  logger.js          |   82.75 |        0 |     100 |   82.75 | 5-8,16            
+  morgan.js          |     100 |       50 |      20 |     100 | 8                 
+ controllers         |   93.84 |    81.81 |     100 |   93.84 |                   
+  park.controller.js |   93.84 |    81.81 |     100 |   93.84 | 20-21,26-27       
+ middlewares         |   79.22 |    58.33 |      75 |   79.22 |                   
+  error.js           |      75 |    28.57 |     100 |      75 | 9-14,22-24,35-36  
+  ignoreFavicon.js   |      50 |      100 |       0 |      50 | 4-8               
+  validate.js        |     100 |      100 |     100 |     100 |                   
+ models              |   98.73 |    85.71 |     100 |   98.73 |                   
+  index.js           |      98 |       80 |     100 |      98 | 15                
+  park.js            |     100 |      100 |     100 |     100 |                   
+ repositories        |     100 |    85.71 |     100 |     100 |                   
+  index.js           |     100 |      100 |     100 |     100 |                   
+  park.repo.js       |     100 |    85.71 |     100 |     100 | 14-16             
+ routes              |   90.16 |      100 |     100 |   90.16 |                   
+  index.js           |     100 |      100 |     100 |     100 |                   
+  park.routes.js     |     100 |      100 |     100 |     100 |                   
+  status.routes.js   |   68.42 |      100 |     100 |   68.42 | 11-16             
+ utils               |   97.22 |     87.5 |     100 |   97.22 |                   
+  ApiError.js        |   92.85 |       50 |     100 |   92.85 | 7                 
+  catchAsync.js      |     100 |      100 |     100 |     100 |                   
+  pick.js            |     100 |      100 |     100 |     100 |                   
+ validations         |     100 |      100 |     100 |     100 |                   
+  park.validation.js |     100 |      100 |     100 |     100 |                   
+---------------------|---------|----------|---------|---------|-------------------
+Test Suites: 2 passed, 2 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        5.887 s, estimated 9 s
+Ran all test suites.
