@@ -5,7 +5,7 @@ const createPark = {
     plat: Joi.string().required(),
     tipe: Joi.string().required().valid('mobil', 'motor'),
     masuk: Joi.date().required(),
-    keluar: Joi.date().required(),
+    keluar: Joi.date().greater(Joi.ref('masuk')).required(),
   }),
 };
 
